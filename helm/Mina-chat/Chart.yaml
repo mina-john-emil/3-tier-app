@@ -1,0 +1,14 @@
+apiVersion: v2
+name: mina-chat
+description: Mina Chat - frontend, reactions, mood, Redis, MySQL (3-tier app)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - frontend
+  - backend
+  - redis
+  - mysql
+  - ingress
+maintainers:
+  - name: Mina
