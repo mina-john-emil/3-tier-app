@@ -20,7 +20,7 @@ parameters:
 variables:
   - group: ITGATE
   - name: DOCKERHUB_IMAGE_PREFIX
-    value: '$(DOCKERHUB_USERNAME)/ashour-chat'
+    value: '$(DOCKERHUB_USERNAME)/mina-chat'
   - name: TAG
     value: $[ coalesce(variables['Build.SourceVersion'], variables['Build.BuildId']) ]
 
