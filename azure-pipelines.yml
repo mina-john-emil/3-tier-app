@@ -317,4 +317,4 @@ stages:
                       --set mood.image.tag="$(effectiveTag)" \
                       --set storageClass.enabled=false \
                       --wait --timeout 5m
-                  displayName: 'Helm upgrade --install ashour-chat (local cluster)'
+                  displayName: 'Helm upgrade --install mina-chat (local cluster)'
