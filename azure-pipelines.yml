@@ -306,10 +306,10 @@ stages:
 
                 - bash: |
                     set -e
-                    CHART_PATH="$(Pipeline.Workspace)/src/helm/ashour-chat"
+                    CHART_PATH="$(Pipeline.Workspace)/src/helm/mina-chat"
                     echo "Deploying Helm chart from $CHART_PATH"
                     echo "Image prefix: $(DOCKERHUB_IMAGE_PREFIX), Tag: $(effectiveTag)"
-                    helm upgrade --install ashour-chat "$CHART_PATH" \
+                    helm upgrade --install mina-chat "$CHART_PATH" \
                       -n frontend --create-namespace \
                       --set global.imageRegistry="$(DOCKERHUB_IMAGE_PREFIX)" \
                       --set frontend.image.tag="$(effectiveTag)" \
