@@ -1,11 +1,23 @@
-$$\color{red}{Local Image Registry}$$
-**1) Create the Secret **
-oc create secret generic github-token-secret --from-literal=password=<<ask me for token>> --type=kubernetes.io/basic-auth
-oc annotate secret github-token-secret 'build.openshift.io/source-secret-match-uri-1=https://github.com/mina-john-emil/*'
+🏗️ Local Image Registry Setup (OpenShift)
+This section guides you through setting up the ImageStreams and BuildConfigs required to build and host your container images directly within the OpenShift cluster.
 
-2) The Build Configs
-Create a file named all-builds.yaml and paste this. It handles all three parts of your app at once.
+1. Create the GitHub Secret
+First, create a secret to allow OpenShift to pull your private source code from GitHub.
 
+Bash
+# Create the secret
+oc create secret generic github-token-secret \
+  --from-literal=password=<<YOUR_GITHUB_TOKEN>> \
+  --type=kubernetes.io/basic-auth
+
+# Annotate the secret to match your repository URI
+oc annotate secret github-token-secret \
+  'build.openshift.io/source-secret-match-uri-1=https://github.com/mina-john-emil/*'
+2. Configure Build Resources
+Create a file named all-builds.yaml. This manifest defines the ImageStreams (where images are stored) and BuildConfigs (how images are built) for all three tiers of the application.
+
+all-builds.yaml
+YAML
 apiVersion: v1
 kind: List
 items:
@@ -60,3 +72,18 @@ items:
       type: Docker
     output:
       to: {kind: ImageStreamTag, name: "frontend:latest"}
+3. Apply and Trigger Builds
+Run the following commands to create the resources and start the image builds.
+
+Apply the configuration:
+
+Bash
+oc apply -f all-builds.yaml
+Start the builds manually:
+
+Bash
+oc start-build mood-build
+oc start-build reactions-build
+oc start-build frontend-build
+[!TIP]
+You can monitor the build progress using oc get builds or by checking the logs with oc logs -f bc/mood-build.
