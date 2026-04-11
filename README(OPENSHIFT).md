@@ -91,7 +91,7 @@ oc new-app frontend --name=frontend-app
 oc expose svc/frontend-app
 ```
 
-# $\color{yellow}{\text{Connection Between Mood and Reaction}}
+# $\color{yellow}{\text{Connection Between Mood and Reaction}}$
 ## 1.Connect Frontend to Mood/Reaction Service
 ```bash
 oc set env deployment/frontend-app MOOD_API_URL=http://mood-app:8080
@@ -103,7 +103,7 @@ oc set env deployment/frontend-app REACTION_API_URL=http://reactions-app:8080
 oc set env deployment/frontend-app --list
 ```
 
-# $\color{yellow}{\text{CHPA, Quotas, and Limits}}
+# $\color{yellow}{\text{CHPA, Quotas, and Limits}}$
 ## 1.Resource Quota (Project Level)
 ```bash
 oc create quota graduation-quota --hard=cpu=4,memory=4Gi,pods=20
