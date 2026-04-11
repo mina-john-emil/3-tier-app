@@ -1,4 +1,4 @@
-# Local Image Registry Setup (OpenShift)
+# $\color{yellow}{\text{Local Image Registry Setup (OpenShift) }}$
 
 This section guides you through setting up the **ImageStreams** and **BuildConfigs** required to build and host your container images directly within the OpenShift cluster.
 
@@ -79,7 +79,7 @@ oc start-build reactions-build
 oc start-build frontend-build
 ```
 
-# Replace Ingress with Route (The Deployment Phase)
+#  $\color{yellow}{\text{Replace Ingress with Route (The Deployment Phase)}}$
 ## 1.Create the apps from the local images
 ```bash
 oc new-app mood --name=mood-app
@@ -91,7 +91,7 @@ oc new-app frontend --name=frontend-app
 oc expose svc/frontend-app
 ```
 
-# Connection Between Mood and Reaction
+# $\color{yellow}{\text{Connection Between Mood and Reaction}}
 ## 1.Connect Frontend to Mood/Reaction Service
 ```bash
 oc set env deployment/frontend-app MOOD_API_URL=http://mood-app:8080
@@ -103,13 +103,13 @@ oc set env deployment/frontend-app REACTION_API_URL=http://reactions-app:8080
 oc set env deployment/frontend-app --list
 ```
 
-# CHPA, Quotas, and Limits
+# $\color{yellow}{\text{CHPA, Quotas, and Limits}}
 ## 1.Resource Quota (Project Level)
 ```bash
 oc create quota graduation-quota --hard=cpu=4,memory=4Gi,pods=20
 ```
 ## 2.Limit Range (Pod Level)
-## 2.1. Open Notepad and paste this code then save:
+### 2.1. Open Notepad and paste this code then save:
 ```bash
 apiVersion: v1
 kind: LimitRange
@@ -125,7 +125,7 @@ spec:
       memory: 256Mi
     type: Container
 ```
-## 2.2. Run this command in your CMD:
+### 2.2. Run this command in your CMD:
 ```bash
 oc apply -f D:\limits.yaml
 ```
