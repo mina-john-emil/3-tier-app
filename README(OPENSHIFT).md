@@ -1,4 +1,4 @@
-# 🏗️ Local Image Registry Setup (OpenShift)
+# Local Image Registry Setup (OpenShift)
 
 This section guides you through setting up the **ImageStreams** and **BuildConfigs** required to build and host your container images directly within the OpenShift cluster.
 
@@ -77,4 +77,63 @@ oc apply -f all-builds.yaml
 oc start-build mood-build
 oc start-build reactions-build
 oc start-build frontend-build
+```
+
+# Replace Ingress with Route (The Deployment Phase)
+## 1.Create the apps from the local images
+```bash
+oc new-app mood --name=mood-app
+oc new-app reactions --name=reactions-app
+oc new-app frontend --name=frontend-app
+```
+## 2.Create the Route for the Frontend
+```bash
+oc expose svc/frontend-app
+```
+
+# Connection Between Mood and Reaction
+## 1.Connect Frontend to Mood/Reaction Service
+```bash
+oc set env deployment/frontend-app MOOD_API_URL=http://mood-app:8080
+
+oc set env deployment/frontend-app REACTION_API_URL=http://reactions-app:8080
+```
+## 2.Check that the environment variables were applied correctly
+```bash
+oc set env deployment/frontend-app --list
+```
+
+# CHPA, Quotas, and Limits
+## 1.Resource Quota (Project Level)
+```bash
+oc create quota graduation-quota --hard=cpu=4,memory=4Gi,pods=20
+```
+## 2.Limit Range (Pod Level)
+## 2.1. Open Notepad and paste this code then save:
+```bash
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: core-limits
+spec:
+  limits:
+  - default:
+      cpu: 500m
+      memory: 512Mi
+    defaultRequest:
+      cpu: 200m
+      memory: 256Mi
+    type: Container
+```
+## 2.2. Run this command in your CMD:
+```bash
+oc apply -f D:\limits.yaml
+```
+## 3.HPA (Scaling)
+```bash
+oc autoscale deployment/frontend-app --min=1 --max=3 --cpu-percent=80
+```
+## 4.Check
+```bash
+oc get quota,limitrange,hpa
 ```
