@@ -103,7 +103,7 @@ oc set env deployment/frontend-app REACTION_API_URL=http://reactions-app:8080
 oc set env deployment/frontend-app --list
 ```
 
-# $\color{yellow}{\text{CHPA, Quotas, and Limits}}$
+# $\color{yellow}{\text{HPA, Quotas, and Limits}}$
 ## 1.Resource Quota (Project Level)
 ```bash
 oc create quota graduation-quota --hard=cpu=4,memory=4Gi,pods=20
