@@ -3,42 +3,7 @@
 > **Reactions & mood — how's the room?**  
 > A full-stack, cloud-native 3-tier web application deployed on Kubernetes using a complete GitOps CI/CD pipeline with Azure DevOps and ArgoCD.
 
----
 
-## 📸 Project Screenshots
-
-### Application UI
-
-| Sign In | Sign Up |
-|---|---|
-| ![Sign In](docs/screenshots/signin.png) | ![Sign Up](docs/screenshots/signup.png) |
-
-| Mood of the Day | Reaction Wall |
-|---|---|
-| ![Mood](docs/screenshots/mood.png) | ![Reactions](docs/screenshots/reactions.png) |
-
-### CI/CD Pipeline & GitOps
-
-| Azure DevOps Pipeline | ArgoCD Sync |
-|---|---|
-| ![Pipeline](docs/screenshots/pipeline.png) | ![ArgoCD](docs/screenshots/argocd.png) |
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Architecture](#️-architecture)
-- [Tech Stack](#-tech-stack)
-- [Application Features](#-application-features)
-- [Repository Structure](#-repository-structure)
-- [CI/CD Pipeline](#-cicd-pipeline)
-- [Kubernetes Deployment](#-kubernetes-deployment)
-- [GitOps with ArgoCD](#-gitops-with-argocd)
-- [Getting Started](#-getting-started)
-- [Contact](#-contact)
-
----
 
 ## 🌟 Overview
 
@@ -375,22 +340,10 @@ kubectl apply -f k8s/argocd-app.yaml
 5. Go to **Reaction Wall** → post a message or emoji reaction
 6. See live vote counts and reaction history
 
----
 
-## 📞 Contact
-
-| | |
-|---|---|
-| **Email** | minajohn949@gmail.com |
-| **Phone** | +20 112 225 5584 |
-| **Azure DevOps** | MinaJohn296 |
-
----
 
 ## 📄 License
 
 This project is created for educational/tutorial purposes.
 
----
 
-*Built with ❤️ by Mina John Emil Fouad — demonstrating DevOps, Kubernetes, and GitOps best practices.*
